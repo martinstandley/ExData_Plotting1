@@ -3,10 +3,17 @@
 This assignment uses data from
 the <a href="http://archive.ics.uci.edu/ml/">UC Irvine Machine
 Learning Repository</a>, a popular repository for machine learning
-datasets. In particular, we will be using the "Individual household
-electric power consumption Data Set" which I have made available on
-the course web site:
+datasets. 
 
+The assignment comprised 4 modules.
+
+This repo contains my answers:
+ - 4 .R files containing commented scripts to fetch the data, process it and produce the specified scripts.
+ - 4 .png containing the resulting plots
+
+---------------------------------------------------------------------------------------------------
+
+The input data and requirements for the assessment are copied in below for reference:
 
 * <b>Dataset</b>: <a href="https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip">Electric power consumption</a> [20Mb]
 
