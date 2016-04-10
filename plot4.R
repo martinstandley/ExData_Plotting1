@@ -1,4 +1,5 @@
 ## Plot 4 - Energi submetering
+library(dplyr)
 
 ## set filename, fetch data and unzip data
 dataurl <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip"
@@ -20,8 +21,8 @@ plotData2 <- mutate (plotData, posTime = as.POSIXct( strptime (paste (Date, Time
 maxSub= max (plotData2$Sub_metering_1, plotData2$Sub_metering_2, plotData2$Sub_metering_3)
 
 ## plot 4: 4 separate line plots 2X2. Start by opening the device and defining the grid
-bmp (filename = "plot4.bmp")
-par(mfrow= c(2,2)) 
+png (filename = "plot4.png")
+par (mfrow= c(2,2)) 
 
 ## plot 1
 with (plotData2, plot(posTime, Global_active_power, main="", xlab ="", ylab ="Global Active Power", type="l"))

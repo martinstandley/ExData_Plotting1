@@ -1,4 +1,6 @@
-## Plot 2 - Global active Power for the two days
+## Plot 2 - This sccript fetches an energy usage data set, washes it and produces a plot for 2 days 
+## Global Active Power
+library (dplyr)
 
 ## set filename, fetch data and unzip data
 dataurl <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip"
@@ -18,7 +20,7 @@ rm(allReadings)
 plotData2 <- mutate (plotData, posTime = as.POSIXct( strptime (paste (Date, Time, sep = " "), format = "%e/%m/%Y %T")))
 
 ## plot 2: make plot of Global Active Power as plot2.bmp (size 480*480 is default)
-bmp (filename = "plot2.bmp")
+png (filename = "plot2.png")
 with (plotData2, plot(posTime, Global_active_power, main="", xlab ="", ylab ="", type="n"))
 with (plotData2, lines(posTime, Global_active_power))
 title (ylab = "Global Active Power (kilowatts)")

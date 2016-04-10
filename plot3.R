@@ -1,4 +1,8 @@
 ## Plot 3 - Energi submetering
+## This script reads a datafile on energy use and produces 
+## a plot of subenergy use for two of the days.
+
+library (dplyr)
 
 ## set filename, fetch data and unzip data
 dataurl <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip"
@@ -9,8 +13,8 @@ download.file (dataurl, localzip)
 unzip (localzip, exdir = localunzip)
 
 ## read in data, select 2007-02-01 and 2007-02-02 into plotData and release memory
-datafilelocation <- paste (localunzip, "/", "household_power_consumption.txt", sep ="" )
-allReadings <- read.table(datafilelocation, na.strings = "?", sep = ";", header = TRUE, stringsAsFactors = FALSE)
+datafilepath <- paste (localunzip, "/", "household_power_consumption.txt", sep ="" )
+allReadings <- read.table(datafilepath, na.strings = "?", sep = ";", header = TRUE, stringsAsFactors = FALSE)
 plotData <- subset(allReadings, Date == "1/2/2007" | Date == "2/2/2007")
 rm(allReadings)
 
@@ -20,7 +24,7 @@ plotData2 <- mutate (plotData, posTime = as.POSIXct( strptime (paste (Date, Time
 maxSub= max (plotData2$Sub_metering_1, plotData2$Sub_metering_2, plotData2$Sub_metering_3)
 
 ## plot 3: make lineplots of submetering as plot3.bmp (size 480*480 is default)
-bmp (filename = "plot3.bmp")
+png (filename = "plot3.png")
 
 with (plotData2, plot(posTime, Sub_metering_1, ylim = c(0, maxSub), main="", xlab ="", ylab ="", type="n"))
 with (plotData2, lines(posTime, Sub_metering_1, col ="black"))
